@@ -67,3 +67,8 @@ def spread_w(word):
                     word = word[:i + 1] + 'w' + word[i + 2:]
                     change_happened = True
     return word
+
+def swap_y_w(word):
+    word = word.replace('wy', 'yw')
+    word = word.replace('wyw', 'wwy')
+    return word

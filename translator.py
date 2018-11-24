@@ -12,6 +12,8 @@ def multiply_s(word):
     s is s if the first letter of a word, ss if in the middle of a word, sss if the final letter of a word [i.e.: susurrus becomes 'swsswrwsss']
 
     """
+    if len(word) < 2:
+        return word
     word = word[0] + word[1:-1].replace('s', 'ss') + word[-1]
     word = word[0] + word[1:-1] + word[-1].replace('s', 'sss')
     return word

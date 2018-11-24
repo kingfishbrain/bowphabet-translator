@@ -1,4 +1,10 @@
 def translate(word):
+    word = replace_u(word)
+    word = spread_w(word)
+    word = replace_letters(word)
+    word = multiply_s(word)
+    word = remove_duplicates(word)
+    word = swap_y_w(word)
     return word
 
 def multiply_s(word):
@@ -14,7 +20,7 @@ def replace_letters(word):
     """
     c, g, and ph become k, j, and f respectively
     x and z become yks and ss respectively 
-    vowels become y, except u which becomes w invariable
+    vowels become y
 
     """
     word = word.replace('c', 'ph')
@@ -29,6 +35,10 @@ def replace_letters(word):
     return word
 
 def replace_u(word):
+    """
+    , except u which becomes w invariable
+
+    """
     word = word.replace('u', 'w')
     return word
 
@@ -49,6 +59,8 @@ def spread_w(word):
     when w appears beside a vowel, it spreads to adjacent vowels
 
     """
+    if(len(word) < 2):
+        return word
     if word[0] == 'w':
         if word[1] in {'a', 'e', 'i', 'o'}:
             word = word[0] + 'w' + word[2:]
@@ -69,6 +81,10 @@ def spread_w(word):
     return word
 
 def swap_y_w(word):
+    """
+    y before w, except after w
+
+    """
     word = word.replace('wy', 'yw')
     word = word.replace('wyw', 'wwy')
     return word

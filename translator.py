@@ -23,7 +23,7 @@ def replace_letters(word):
     vowels become y
 
     """
-    word = word.replace('c', 'ph')
+    word = word.replace('c', 'k')
     word = word.replace('g', 'j')
     word = word.replace('ph', 'f')
     word = word.replace('x', 'yks')

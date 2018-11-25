@@ -1,5 +1,6 @@
-from translator import translate
+from translator import translate_sentence
 
-word = input("please enter words: ")
-output = translate(word)
+sentence = input("please enter words: ")
+print (sentence)
+output = translate_sentence(sentence)
 print (output)

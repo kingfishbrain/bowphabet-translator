@@ -1,4 +1,20 @@
+import string
+
+def translate_sentence(sentence):
+    word = ''
+    output = ''
+    for letter in sentence:
+        if letter in string.ascii_letters:
+            word += letter
+        else:
+            output += translate(word) + letter
+            word = ''
+    output += translate(word)
+    return(output)
+
 def translate(word):
+    if word == '':
+        return ''
     word = replace_u(word)
     word = spread_w(word)
     word = replace_letters(word)

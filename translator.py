@@ -4,7 +4,7 @@ def translate_sentence(sentence):
     word = ''
     output = ''
     for letter in sentence:
-        if letter in string.ascii_letters:
+        if letter in string.ascii_letters + "'":
             word += letter
         else:
             output += translate(word) + letter

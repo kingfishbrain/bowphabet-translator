@@ -1,4 +1,5 @@
 import string
+import itertools
 
 def translate_sentence(sentence):
     word = ''
@@ -42,14 +43,23 @@ def replace_letters(word):
 
     """
     word = word.replace('c', 'k')
+    word = word.replace('C', 'K')
     word = word.replace('g', 'j')
+    word = word.replace('G', 'J')    
     word = word.replace('ph', 'f')
+    word = word.replace('PH', 'F')    
     word = word.replace('x', 'yks')
-    word = word.replace('z', 'ss')
+    word = word.replace('X', 'YKS')   
+    word = word.replace('z', 'ss')    
+    word = word.replace('Z', 'SS')
     word = word.replace('i', 'y')
+    word = word.replace('I', 'Y')    
     word = word.replace('o', 'y')
+    word = word.replace('O', 'Y')
     word = word.replace('e', 'y')
+    word = word.replace('E', 'Y')    
     word = word.replace('a', 'y')
+    word = word.replace('A', 'Y')
     return word
 
 def replace_u(word):
@@ -58,6 +68,7 @@ def replace_u(word):
 
     """
     word = word.replace('u', 'w')
+    word = word.replace('U', 'W')
     return word
 
 
@@ -68,7 +79,7 @@ def remove_duplicates(word):
     """
     output = word[0]
     for letter in word[1:]:
-        if letter in {'w', 's'} or (letter != output[-1]):
+        if letter in 'wWsS' or (letter != output[-1]):
             output += letter
     return output
 
@@ -79,22 +90,32 @@ def spread_w(word):
     """
     if(len(word) < 2):
         return word
-    if word[0] == 'w':
-        if word[1] in {'a', 'e', 'i', 'o'}:
+    if word[0] in 'wW':
+        if word[1] in "aeio":
             word = word[0] + 'w' + word[2:]
-    if word[-1] == 'w':
-        if word[-2] in {'a', 'e', 'i', 'o'}:
+        elif word[1] in "AEIO":
+            word = word[0] + 'W' + word[2:]
+    if word[-1] in 'wW':
+        if word[-2] in 'aeio':
             word = word[:-2] + 'w' + word[-1]
+        elif word[-2] in 'AEIO':
+            word = word[:-2] + 'W' + word[-1]
     change_happened = True
     while(change_happened):
         change_happened = False
         for i in range(1, len(word) - 1):
-            if word[i] == 'w':
-                if word[i - 1] in {'a', 'e', 'i', 'o'}:
+            if word[i] in 'wW':
+                if word[i - 1] in 'aeio':
                     word = word[:i - 1] + 'w' + word[i:]
                     change_happened = True
-                if word[i + 1] in {'a', 'e', 'i', 'o'}:
+                elif word[i - 1] in 'AEIO':
+                    word = word[:i - 1] + 'W' + word[i:]
+                    change_happened = True
+                if word[i + 1] in 'aeio':
                     word = word[:i + 1] + 'w' + word[i + 2:]
+                    change_happened = True
+                elif word[i + 1] in 'AEIO':
+                    word = word[:i + 1] + 'W' + word[i + 2:]
                     change_happened = True
     return word
 
@@ -104,5 +125,15 @@ def swap_y_w(word):
 
     """
     word = word.replace('wy', 'yw')
+    word = word.replace('Wy', 'Yw')
+    word = word.replace('wY', 'yW')
+    word = word.replace('YW', 'YW')
     word = word.replace('wyw', 'wwy')
+    word = word.replace('Wyw', 'Wwy')
+    word = word.replace('wYw', 'wWy')
+    word = word.replace('WYw', 'WWy')
+    word = word.replace('wyW', 'wwY')
+    word = word.replace('WyW', 'WwY')
+    word = word.replace('wYW', 'wWY')
+    word = word.replace('WYW', 'WWY')
     return word
